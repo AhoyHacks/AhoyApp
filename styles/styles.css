@@ -4,13 +4,14 @@ header{
     flex-direction: row;
     justify-content: space-between;
     display: flex;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 1%;
     font-family: Overpass;
-    border-bottom: 1px solid #f1f1f1;
 }
 
 .userimg{
-    margin-top: 20px;
-    height: 50%;
+    height: 80%;
 }
 
 body{
@@ -20,5 +21,26 @@ body{
 @font-face {
     font-family: Overpass;
     src: url(../assets/Overpass-Light.ttf);
-  }
+}
+
+.sea{
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 400px;
+    width: 1000px;
+    border-radius: 10px;
+    background-color: rgb(218, 237, 251);
+}
+
+footer{
+    margin: 5%;
+    padding: 20px;
+    text-align: end;
+    background-color: rgb(252, 249, 249);
+    border-radius: 12px;
+}
   
+.footertext{
+    font-family: Overpass;
+    color: rgb(197, 131, 131);
+}
