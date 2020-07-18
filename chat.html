@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat</title>
+</head>
+<body>
+   <br>
+   <h1>Send Message</h1>
+   <br>
+   <input id = "name" placeholder="Jack Sparrow">
+   <br>
+   <textarea id = "message" placeholder="Ayyy mateys"></textarea>
+   <br>
+   <button id="send">Post</button>
+</div>
+<script>
+   var socket = io();
+    $(() => {
+        $("#send").click(()=>{
+            sendMessage({name: $("#name").val(), message: $("#message").val()});
+        })
+
+        getMessages()
+    })
+
+    socket.on('message', addMessages)
+
+    function addMessages(message){
+        $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message} </p>`)
+    }
+
+    function getMessages(){
+      $.get('http://localhost:3000/messages', (data) => {
+        data.forEach(addMessages);
+      })
+    }
+
+    function sendMessage(message){
+      $.post('http://localhost:3000/messages', message)
+    }
+</script>
+</body>
+</html>

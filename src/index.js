@@ -35,6 +35,7 @@ function moveMap(map){
   }
 
 function addGeofence(latitude, longitude) {
+    console.log('Add Geofence');
     var bubble = new H.ui.InfoBubble({ lng: longitude, lat: latitude }, {
         content: '<b>Ahoy There!</b>'
     });

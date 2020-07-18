@@ -2,15 +2,19 @@
 //If none found create a GeoFence
 let description ="";
 var listOfGeofences;
+let chatId = "";
 // Radar.trackOnce((err,res) => {
   //   if(!err) {
     //     console.log(result)
     //     Radar.geofences((err,res) => !err ? console.log('Result',res) : console.log('Error',err))
     //   }
     // })
-    
+
+//prj_test_sk_5991f6d94f3dd6564391b67a22a8407d57b1bbd3 
+
+setup();
 async function setup(){
-  Radar.initialize('prj_test_pk_cc801041397f78b643dd64fd797c9cb7f3217542');
+  Radar.initialize('prj_test_sk_2f5580d96b2d660cf86a9d9b61b20a9f60263450');
   let latlong=[];
   await Radar.getLocation(async function(err, result) {
     if (!err) {
@@ -32,6 +36,8 @@ async function setup(){
           createGeofence(data);
         }
         else if(result==1){
+          await renderer();
+          console.log("render over");
           geofenceEntered();
         }
       }
@@ -46,7 +52,7 @@ async function createGeofence(data){
       method: 'POST',
       headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'prj_test_sk_5991f6d94f3dd6564391b67a22a8407d57b1bbd3 '
+      'Authorization': 'prj_test_pk_542a33c10554d93abf97305dfb75d1cb4e976a43'
       },
       body: JSON.stringify(data)
   }); 
@@ -56,9 +62,15 @@ async function createGeofence(data){
   else{
     console.log(await response.json());
   }
+  await renderer();
+}
+
+async function renderer(){
+  console.log("render begun");
   const listGeofenceRes = await fetch('https://api.radar.io/v1/geofences/', {
     headers: {
-      'Authorization': 'prj_test_sk_5991f6d94f3dd6564391b67a22a8407d57b1bbd3'
+      'Content-Type': 'application/json',
+      'Authorization': 'prj_test_sk_2f5580d96b2d660cf86a9d9b61b20a9f60263450'
     }
   })
   if(listGeofenceRes.ok) {
@@ -80,18 +92,34 @@ async function findGeofence(location){
   let response = await fetch(`https://api.radar.io/v1/search/geofences?near=${location}`, {
       method: 'GET',
       headers: {
-      "Authorization": "prj_test_sk_5991f6d94f3dd6564391b67a22a8407d57b1bbd3 "
+      "Authorization": "prj_test_pk_542a33c10554d93abf97305dfb75d1cb4e976a43"
       },    
   }
-  )
-  let data = response.json();
-  console.log('Data',await data);
+  ).then(response => response.json()
+  .then(data =>{
+    console.log(data);
+    console.log(data.geofences);
+    console.log(data.geofences.length==0);
+    if(data.geofences.length==0){
+      returnValue=0;
+    }
+    else{
+      description = data.geofences[0].description;
+      chatId = data.geofences[0]._id;
+      returnValue=1;
+    }
+  })
+  .catch(e=>{
+    returnValue=0;
+  })
+  ); 
   return returnValue;
 }
 
 function geofenceEntered(){ //TODO: Log the user into a chat room
   console.log('geofence Entered');
-  console.log(description); //The description of the geofence which can be the title of the chatroom
+  if(description!="" && chatId!=""){
+    console.log(description); //The description of the geofence which can be the title of the chatroom
+    console.log(chatId); //The description of the geofence which can be the title of the chatroom
+  }
 }
-
-

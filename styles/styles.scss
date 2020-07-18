@@ -1,0 +1,81 @@
+@font-face {
+    font-family: Overpass;
+    src: url(../assets/Overpass-Light.ttf);
+}
+
+html, body{
+    height: 100%; // fotter stick bot
+}
+
+body{
+    display: flex; // fotter stick bot
+    flex-direction: column; // fotter stick bot
+    font-family: Overpass;
+    max-width: 2000px;
+    margin: 0 auto;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#container {
+    flex: 1 0 auto; // fotter stick bot
+}
+
+.find{
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    background-color: darkturquoise;
+  }
+
+.findbutton{
+    text-align: center;
+    margin: 1.5%;
+}
+
+.map-container{
+    width: 96%; 
+    height: 100vh;
+    cursor: grab;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+header{
+    flex-direction: row;
+    justify-content: space-between;
+    display: flex;
+    margin: 5vh 10vw;
+}
+
+.userimg{
+    height: 2.8rem;
+}
+
+.sea{
+    margin: 0 auto;
+    height: 60vh;
+    width: 70vw;
+    border-radius: 10px;
+    background-color: rgb(218, 237, 251);
+}
+
+footer{
+    position: relative;
+    padding: 5vh 0;
+    margin: 0 6vw;
+    flex-shrink: 0;
+    background-color: #FCF9F9;
+    border-radius: 12px;
+}
+  
+.footertext{
+    color: rgb(197, 131, 131);
+    position: absolute;
+    bottom: 1rem;
+    right: 1.3rem;
+}
