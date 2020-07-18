@@ -1,6 +1,6 @@
 @font-face {
     font-family: Overpass;
-    src: url(/assets/Overpass-Light.ttf);
+    src: url(../assets/Overpass-Light.ttf);
 }
 
 html, body{
@@ -24,6 +24,18 @@ body{
 #container {
     flex: 1 0 auto; // fotter stick bot
 }
+
+.find{
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    background-color: darkturquoise;
+  }
+
+.findbutton{
+    text-align: center;
+    margin: 1.5%;
+  }
 
 header{
     flex-direction: row;
