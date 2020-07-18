@@ -50,10 +50,15 @@
                         </div>
                     </div>
                 </div>
-                <input type="text" placeholder="Ahoy scallywag" class="chat-input">
+                <section class="sendMessage">
+                    <input id="message" type="text" placeholder="Ahoy scallywag" class="chat-input">
+                    <button id="send">Send</button>
+                </section>
             </div>
         </div>
         <section class="findbutton">
+            <p>Name:</p>
+            <input id="name" type="text" placeholder="Jack Sparrow" class="chat-input">
             <button onclick="setup()" class="find">Find a fellow seafarer!</button>
         </section>
         
@@ -62,6 +67,32 @@
         <p class="footertext">© Ahoy 2020</p>
     </footer>
     <!-- <div id="root"></div> -->
+    <script>
+        var socket = io();
+         $(() => {
+             $("#send").click(()=>{
+                 sendMessage({name: $("#name").val(), message: $("#message").val()});
+             })
+     
+             getMessages()
+         })
+     
+         socket.on('message', addMessages)
+     
+         function addMessages(message){
+             $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message} </p>`)
+         }
+     
+         function getMessages(){
+           $.get('http://localhost:3000/messages', (data) => {
+             data.forEach(addMessages);
+           })
+         }
+     
+         function sendMessage(message){
+           $.post('http://localhost:3000/messages', message)
+         }
+     </script>
     <script src="src/index.js"></script>
     <script src="src/scripts.js"></script>
 </body>
