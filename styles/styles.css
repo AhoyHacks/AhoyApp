@@ -2,7 +2,128 @@
     font-family: Overpass;
     src: url(/assets/Overpass-Light.ttf);
   }
-  
+/* Chatbox Styles */
+
+.main {
+  display: flex;
+  /* align-items: flex-start;
+  justify-content: center; */
+}
+.chatbox {
+  right: 0;
+  background-color: #F5F3F3;
+  width: 33%;
+}
+.container {
+  max-width: 500 !important;
+  margin: auto;
+  margin-top: 4%;
+  font-family: sans-serif;
+  letter-spacing: 0.5px;
+}
+.profile-pic {
+  /* max-width: 100%; */
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.msg-header {
+  border: 1px solid #ccc;
+  width: 100%;
+  height: 10%;
+  display: inline-block;
+  background-color: #007bff;
+}
+.msg-header-img {
+  border-radius: 50%;
+  width: 4px;
+  margin-left: 5%;
+  margin-top: 12px;
+}
+.active {
+  width: 120px;
+  float: left;
+  margin-top: 10px;
+}
+.active h4 {
+  font-size: 20px;
+  margin-left: 10px;
+  color: white;
+}
+.active h6 {
+  font-size: 10px;
+  margin-left: 10px;
+  line-height: 2px;
+  color: white;
+}
+
+
+.chat-page {
+  padding: 0 0 50px 0;
+  padding-bottom: 0;
+}
+.msg-inbox {
+  border: 1px solid #ccc;
+  overflow: hidden;
+  padding-bottom: 30px;
+}
+.chats {
+  padding: 30px 15px 0 25px;
+}
+.msg-page {
+  height: 516px;
+  overflow-y: auto;
+}
+.received-msg {
+  display: inline-block;
+  padding: 0 0 0 10px;
+  vertical-align: top;
+  width: 92%;
+}
+.received-msg-inbox {
+  width: 57%;
+}
+.received-msg-inbox p {
+  background: #40BAFF none repeat scroll 0 0;
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+  margin: 0;
+  padding: 5px 10px 5px 12px;
+  width: 100%;
+}
+.time {
+  color: #777;
+  display: block;
+  font-size: 12px;
+  margin: 8px 0 0;
+}
+.outgoing-chats {
+  overflow: hidden;
+  margin: 26px 20px;
+}
+.outgoing-chats-msg p {
+  background: #255977 none repeat scroll 0 0;
+  color: white;
+  border-radius: 10px;
+  font-size: 14px;
+  margin: 0;
+  padding: 5px 10px 5px 12px;
+  width: 100%;
+}
+.outgoing-chats-msg {
+  float: left;
+  width: 46%;
+  margin-left: 45%;
+}
+.chat-input {
+  width: 100%;
+  height: 40px;
+}
+
+/* End of chatbox styles */
   html, body {
     height: 100%;
   }
@@ -58,7 +179,7 @@
     border-radius: 10px;
     background-color: #daedfb;
   }
-  .unclicked-map {
+  .cursor-in-map {
     cursor: grab;
   }
   .clicked-map {
