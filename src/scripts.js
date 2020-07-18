@@ -8,14 +8,20 @@ async function setup(){
   await Radar.getLocation(async function(err, result) {
     if (!err) {
       latlong = `${result.location.latitude},${result.location.longitude}`;
+      latlongForPost = `[${result.location.longitude},${result.location.latitude}]`;
       console.log(result);
       if(latlong.length>0){
         console.log(latlong);
         let result = await findGeofence(latlong);
         console.log("RESULT: "+result);
         if(result==0){
-          latlong = `[${result.location.longitude},${result.location.latitude}]`;
-          createGeofence("someName", "circle", latlong, 10000);
+          let data = {
+            description: 'SomeName',
+            type: "circle",
+            coordinates: latlongForPost, //TODO: Add latlong of user
+            radius: 1500
+          };
+          createGeofence(data);
         }
         else if(result==1){
           geofenceEntered();
@@ -25,18 +31,22 @@ async function setup(){
   });
 }
 
-async function createGeofence(store,type,coordinates){
-console.log('Create Geofence');
-console.log(`https://api.radar.io/v1/geofences?description=${store}&type=${type}&coordinates=${coordinates}&radius=1500`);
-let response = await fetch(`https://api.radar.io/v1/geofences?description=${store}&type=${type}&coordinates=${coordinates}&radius=1500`, {
-    method: 'POST',
-    headers: {
-    "Authorization": "prj_live_pk_20d3fdd8f9d6c1dc196b415ac11a9686b0e36be4"
-    },
-}); 
-if(response.ok){
+async function createGeofence(data){
+  console.log('Create Geofence');
+  console.log(JSON.stringify(data));
+  let response = await fetch(`https://api.radar.io/v1/geofences/`, {
+      method: 'post',
+      headers: {
+      "Authorization": "prj_live_pk_20d3fdd8f9d6c1dc196b415ac11a9686b0e36be4"
+      },
+      body: JSON.stringify(data)
+  }); 
+  if(response.ok){
+      console.log(await response.json());
+  }
+  else{
     console.log(await response.json());
-}
+  }
 }
 
 async function findGeofence(location){
