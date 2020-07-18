@@ -123,6 +123,3 @@ function geofenceEntered(){ //TODO: Log the user into a chat room
     console.log(chatId); //The description of the geofence which can be the title of the chatroom
   }
 }
-
-
-
