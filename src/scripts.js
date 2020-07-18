@@ -1,19 +1,24 @@
 //Search for nearby GeoFences
 //If none found create a GeoFence
+let description ="";
 
 async function setup(){
   Radar.initialize('prj_live_pk_20d3fdd8f9d6c1dc196b415ac11a9686b0e36be4');
   let latlong=[];
   await Radar.getLocation(async function(err, result) {
     if (!err) {
-      latlong = [result.location.longitude,result.location.latitude];
+      latlong = `${result.location.latitude},${result.location.longitude}`;
       console.log(result);
       if(latlong.length>0){
         console.log(latlong);
         let result = await findGeofence(latlong);
         console.log("RESULT: "+result);
         if(result==0){
+          latlong = `[${result.location.longitude},${result.location.latitude}]`;
           createGeofence("someName", "circle", latlong, 10000);
+        }
+        else if(result==1){
+          geofenceEntered();
         }
       }
     }
@@ -52,6 +57,7 @@ async function findGeofence(location){
       returnValue=0;
     }
     else{
+      description = data.geofences[0].description;
       returnValue=1;
     }
   })
@@ -60,4 +66,9 @@ async function findGeofence(location){
   })
   ); 
   return returnValue;
+}
+
+function geofenceEntered(){ //TODO: Log the user into a chat room
+  console.log('geofence Entered');
+  console.log(description); //The description of the geofence which can be the title of the chatroom
 }
