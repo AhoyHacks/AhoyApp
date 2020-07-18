@@ -1,6 +1,6 @@
 @font-face {
   font-family: Overpass;
-  src: url(/assets/Overpass-Light.ttf);
+  src: url(../assets/Overpass-Light.ttf);
 }
 
 html, body {
@@ -33,6 +33,32 @@ body {
           flex: 1 0 auto;
 }
 
+.mapboxgl-canvas {
+  border-radius: 1rem;
+  border: none;
+  width: 50vw;
+}
+
+#map {
+  z-index: 0 !important;
+}
+
+.mapboxgl-ctrl-logo, .mapboxgl-ctrl-bottom-right {
+  opacity: 0.4;
+}
+
+.find {
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  background-color: darkturquoise;
+}
+
+.findbutton {
+  text-align: center;
+  margin: 1.5%;
+}
+
 header {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -55,8 +81,8 @@ header {
   margin: 0 auto;
   height: 60vh;
   width: 70vw;
-  border-radius: 10px;
-  background-color: #daedfb;
+  border: none;
+  border-radius: 1.3rem;
 }
 
 footer {

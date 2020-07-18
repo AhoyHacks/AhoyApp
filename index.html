@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahoy</title>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+    <!-- <script src="src/map.js"></script> -->
     <link rel="stylesheet" href="styles/styles.css">
     <script src="https://js.radar.io/v3/radar.min.js"></script>
     <!-- <script src="src/scripts.js"></script> -->
@@ -12,9 +17,14 @@
             <h1>Ahoy</h1>
             <img class="userimg" src="assets/user.png">
         </header>
-        <section class="sea">
+        <!-- <section class="sea">
     
-        </section>
+        </section> -->
+        <main class="sea">
+			<section id='map' style='width:100%; height: 100%;'></section>
+		</main> 
+
+        
     </div>
     <footer>
         <p class="footertext">© Ahoy 2020</p>
