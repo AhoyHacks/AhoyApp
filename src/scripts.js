@@ -1,6 +1,5 @@
 //Search for nearby GeoFences
 //If none found create a GeoFence
-
 async function setup(){
     Radar.initialize('prj_live_pk_20d3fdd8f9d6c1dc196b415ac11a9686b0e36be4');
     let latlong=[];
