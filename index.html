@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+    <title>Ahoy</title>
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://js.radar.io/v3/radar.min.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script> 
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1>Ahoy</h1>
+            <img class="userimg" src="assets/user.png">
+        </header>
+        <div style="width: 100%; height: 100vh;" class="map-container" id="mapContainer"></div>
+        <section class="findbutton">
+            <button onclick="setup()" class="find">Find a fellow seafarer!</button>
+        </section>
+        
+    </div>
+    <footer>
+        <p class="footertext">© Ahoy 2020</p>
+    </footer>
+    <!-- <div id="root"></div> -->
+    <script src="src/index.js"></script>
+    <script src="src/scripts.js"></script>
+</body>
+</html>

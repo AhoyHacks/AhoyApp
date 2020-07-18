@@ -1,8 +1,3 @@
-/* 
-script by Vedvardhan
-AHOY©
-*/ 
-
 function moveMap(map){
     map.setCenter({lat:0, lng:0});
     map.setZoom(1);
