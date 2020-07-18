@@ -32,6 +32,13 @@ body{
     background-color: rgb(218, 237, 251);
 }
 
+.find{
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    background-color: darkturquoise;    
+}
+
 footer{
     margin-top: 5%;
     padding: 20px;
