@@ -52,7 +52,7 @@ async function createGeofence(data){
       method: 'POST',
       headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'prj_test_pk_542a33c10554d93abf97305dfb75d1cb4e976a43'
+      'Authorization': 'prj_test_sk_86c5dcd2f768553d3d62c7ab3f6d4a16ccba4ab9'
       },
       body: JSON.stringify(data)
   }); 
