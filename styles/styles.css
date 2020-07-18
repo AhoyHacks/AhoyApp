@@ -85,6 +85,37 @@ header {
   border-radius: 1.3rem;
 }
 
+::-moz-selection {
+  background-color: #ffa228;
+  /* WebKit/Blink Browsers */
+  color: white;
+}
+
+::selection {
+  background-color: #ffa228;
+  /* WebKit/Blink Browsers */
+  color: white;
+}
+
+.userBtn {
+  border: none;
+  background-color: #fcecec;
+  border-radius: 4rem;
+  position: relative;
+  top: 10px;
+  left: -10px;
+}
+
+.userBtn:hover {
+  cursor: pointer;
+}
+
+.userBtn .userimg {
+  position: relative;
+  top: -10px;
+  left: 10px;
+}
+
 footer {
   position: relative;
   padding: 5vh 0;

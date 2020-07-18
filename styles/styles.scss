@@ -69,8 +69,27 @@ header{
     border: none;
     border-radius: 1.3rem;
 }
+::selection {
+    background-color: #ffa228; /* WebKit/Blink Browsers */
+    color: white;
+}
 
-
+.userBtn{
+    border: none;
+    background-color: #fcecec;
+    border-radius: 4rem;
+    position: relative;
+    top:10px;
+    left:-10px;
+    &:hover{
+        cursor: pointer;
+    }
+    .userimg {
+        position: relative;
+        top:-10px;
+        left:10px;
+    }
+}
 
 footer{
     position: relative;
