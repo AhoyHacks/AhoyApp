@@ -120,6 +120,6 @@ function geofenceEntered(){ //TODO: Log the user into a chat room
   console.log('geofence Entered');
   if(description!="" && chatId!=""){
     console.log(description); //The description of the geofence which can be the title of the chatroom
-    console.log(chatId); //The description of the geofence which can be the title of the chatroom
+    document.getElementById("chatId").innerHTML = chatId;//The description of the geofence which can be the title of the chatroom
   }
 }

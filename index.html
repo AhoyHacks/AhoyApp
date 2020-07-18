@@ -11,6 +11,7 @@
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 
 <body>
@@ -57,6 +58,7 @@
                                 placeholder="Ahoy scallywag"></textarea>
                             <!-- <button id="send">Send</button> -->
                         </section>
+                        <p id="chatId" style="display: none;"></p>
                     </div>
 
                 </div>
@@ -77,11 +79,8 @@
     <script>
         var socket = io();
         $(() => {
-            $("#send").click(() => {
-                sendMessage({
-                    name: $("#name").val(),
-                    message: $("#message").val()
-                });
+            $("#send").click(()=>{
+                sendMessage({name: $("#name").val(), message: $("#message").val()});
             })
 
             getMessages()
@@ -89,20 +88,19 @@
 
         socket.on('message', addMessages)
 
-        function addMessages(message) {
+        function addMessages(message){
             $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message} </p>`)
         }
 
-        function getMessages() {
-            $.get('http://localhost:3000/messages', (data) => {
-                data.forEach(addMessages);
-            })
+        function getMessages(){
+        $.get('http://localhost:3000/messages', (data) => {
+            data.forEach(addMessages);
+        })
         }
 
-        function sendMessage(message) {
-            $.post('http://localhost:3000/messages', message)
+        function sendMessage(message){
+        $.post('http://localhost:3000/messages', message)
         }
-       
     </script>
     <script src="src/index.js"></script>
     <script src="src/scripts.js"></script>
