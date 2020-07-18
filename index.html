@@ -1,16 +1,20 @@
 <!DOCTYPE html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahoy</title>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
-	<link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
-    <!-- <script src="src/map.js"></script> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
     <link rel="stylesheet" href="styles/styles.css">
     <script src="https://js.radar.io/v3/radar.min.js"></script>
-    <!-- <script src="src/scripts.js"></script> -->
-    <script src="src/index.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
 </head>
+
 <body>
     <div id="container">
         <header>
@@ -19,18 +23,93 @@
                 <img class="userimg" src="assets/user.png">
             </button>
         </header>
-        <!-- <section class="sea">
-    
-        </section> -->
-        <main class="sea">
-			<section id='map' style='width:100%; height: 100%;'></section>
-		</main> 
+        <main>
+            <div class="cursor-in-map" id="mapContainer"></div>
+            <div class="chatbox">
+                <div class="chat-page">
+                    <div class="msg-inbox">
+                        <div class="chats">
+                            <div class="msg-page">
+                                <div class="received-chats">
+                                    <div class="received-chats-img">
 
-        
+                                    </div>
+                                    <div class="received-msg">
+                                        <div class="received-msg-inbox">
+                                            <p>Ye filthy monkey, sparrow!</p>
+                                            <span class="them-chat">them</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="outgoing-chats">
+                                    <div class="outgoing-chats-msg">
+                                        <!-- <div class="outgoing-msg-inbox"> -->
+                                        <p>YO HO YO HO YO HO IT's A PIRATE's Life for me!
+                                            You dirty scallywag, piss off!
+
+                                        </p>
+                                        <span class="you-chat">you</span>
+                                        <!-- </div> -->
+                                    </div>
+                                    <div class="outgoing-chats-img"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <section class="sendMessage">
+                            <!-- <input id="message" type="text"  > -->
+                            <textarea name="message" id="message" class="chat-input" rows="1"
+                                placeholder="Ahoy scallywag"></textarea>
+                            <!-- <button id="send">Send</button> -->
+                        </section>
+                    </div>
+
+                </div>
+
+                <!-- </div> -->
+        </main>
+        <!-- <section class="findbutton">
+            <p>Name:</p>
+            <input id="name" type="text" placeholder="Jack Sparrow" class="chat-input">
+            <button onclick="setup()" class="find">Find a fellow seafarer!</button>
+        </section> -->
+
     </div>
     <footer>
         <p class="footertext">© Ahoy 2020</p>
     </footer>
     <!-- <div id="root"></div> -->
+    <script>
+        var socket = io();
+        $(() => {
+            $("#send").click(() => {
+                sendMessage({
+                    name: $("#name").val(),
+                    message: $("#message").val()
+                });
+            })
+
+            getMessages()
+        })
+
+        socket.on('message', addMessages)
+
+        function addMessages(message) {
+            $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message} </p>`)
+        }
+
+        function getMessages() {
+            $.get('http://localhost:3000/messages', (data) => {
+                data.forEach(addMessages);
+            })
+        }
+
+        function sendMessage(message) {
+            $.post('http://localhost:3000/messages', message)
+        }
+       
+    </script>
+    <script src="src/index.js"></script>
+    <script src="src/scripts.js"></script>
 </body>
+
 </html>
