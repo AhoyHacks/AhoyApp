@@ -1,3 +1,25 @@
+@font-face {
+  font-family: Overpass;
+  src: url(/assets/Overpass-Light.ttf);
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: Overpass;
+  max-width: 2000px;
+  margin: 0 auto;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -54,37 +76,3 @@ footer {
   right: 1.3rem;
 }
 /*# sourceMappingURL=styles.css.map */
-=======
-@font-face {
-    font-family: Overpass;
-    src: url(../assets/Overpass-Light.ttf);
-}
-
-.sea{
-    margin-left: 10%;
-    margin-right: 10%;
-    height: 400px;
-    width: 1000px;
-    border-radius: 10px;
-    background-color: rgb(218, 237, 251);
-}
-
-.find{
-    padding: 10px;
-    border-radius: 10px;
-    color: white;
-    background-color: darkturquoise;    
-}
-
-footer{
-    margin-top: 5%;
-    padding: 20px;
-    text-align: end;
-    background-color: rgb(252, 249, 249);
-    border-radius: 12px;
-}
-  
-.footertext{
-    font-family: Overpass;
-    color: rgb(197, 131, 131);
-}
