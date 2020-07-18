@@ -35,7 +35,15 @@ body{
 .findbutton{
     text-align: center;
     margin: 1.5%;
-  }
+}
+
+.map-container{
+    width: 96%; 
+    height: 100vh;
+    cursor: grab;
+    margin-left: 2%;
+    margin-right: 2%;
+}
 
 header{
     flex-direction: row;
