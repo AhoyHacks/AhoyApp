@@ -1,3 +1,4 @@
+
 function moveMap(map) {
     map.setCenter({
         lat: 0,
@@ -11,7 +12,6 @@ window.addEventListener("load",setup);
 function setup(){
     let message = document.querySelector("#message");
     message.addEventListener('keyup', () =>{
-        console.log( message.value.length)
         message.setAttribute('rows', message.value.split('\n').length);
     });
 }
