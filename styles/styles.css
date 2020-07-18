@@ -1,3 +1,15 @@
+:root {
+  --map-sz-w: 50vw;
+  --map-margin:0 3vw 0 0;
+  --chat-display: false;
+}
+
+[data-theme="active-chat"] {
+  --map-sz-w: 70vw;
+  --map-margin:0 auto;
+  --chat-display: none;
+}
+
 @font-face {
   font-family: Overpass;
   src: url(../assets/Overpass-Light.ttf);
@@ -45,13 +57,12 @@ body {
   margin: 1.5%;
 }
 
-.map-container {
-  width: 96%;
-  height: 100vh;
+#mapContainer {
+  width: var(--map-sz-w);
+  height: 70vh;
   cursor: -webkit-grab;
   cursor: grab;
-  margin-left: 2%;
-  margin-right: 2%;
+  margin: var(--map-margin);
 }
 
 header {
@@ -69,7 +80,9 @@ header {
 }
 
 .userimg {
-  height: 2.8rem;
+  position: relative;
+  height: 2.3rem;
+  top: 5px;
 }
 
 .sea {
@@ -78,6 +91,20 @@ header {
   width: 70vw;
   border-radius: 10px;
   background-color: #daedfb;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  width: 90vw;
+  margin: 0 auto;
 }
 
 footer {
@@ -97,35 +124,60 @@ footer {
   right: 1.3rem;
 }
 
-.chat-page {
-  padding: 0 0 50px 0;
-  padding-bottom: 0;
+.chatbox {
+  margin: 0 0 0 0;
+  height: 70vh;
+  display: var(--chat-display);
+  background-color: #F5F3F3;
+  border-radius: 1rem;
 }
 
 .msg-inbox {
-  border: 1px solid #ccc;
   overflow: hidden;
-  padding-bottom: 30px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 95fr 5fr;
+      grid-template-rows: 95fr 5fr;
+}
+
+#message {
+  width: 100%;
+  font-size: 1rem;
+  border: 4px solid #fff3f3;
+  border-radius: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  resize: none;
+  overflow: auto;
+}
+
+#message::-webkit-scrollbar {
+  width: 0 !important;
+  display: none;
+}
+
+#message:focus {
+  outline: none;
+  border: 4px solid #f8c8c8;
+}
+
+.sendMessage {
+  margin: 0 auto;
+  width: 95%;
 }
 
 .chats {
   padding: 30px 15px 0 25px;
 }
 
-.msg-page {
-  height: 516px;
-  overflow-y: auto;
-}
-
-.received-msg {
-  display: inline-block;
-  padding: 0 0 0 10px;
-  vertical-align: top;
-  width: 92%;
+.chat-page, .msg-inbox {
+  height: 100%;
 }
 
 .received-msg-inbox {
-  width: 57%;
+  max-width: 35ch;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .received-msg-inbox p {
@@ -135,19 +187,21 @@ footer {
   font-size: 14px;
   margin: 0;
   padding: 5px 10px 5px 12px;
-  width: 100%;
 }
 
-.time {
+.them-chat, .you-chat {
   color: #777;
   display: block;
   font-size: 12px;
-  margin: 8px 0 0;
+  margin: 0.1rem 0 0.3rem 0;
+}
+
+.you-chat {
+  text-align: right;
 }
 
 .outgoing-chats {
   overflow: hidden;
-  margin: 26px 20px;
 }
 
 .outgoing-chats-msg p {
@@ -161,23 +215,7 @@ footer {
 }
 
 .outgoing-chats-msg {
-  float: left;
-  width: 46%;
-  margin-left: 45%;
-}
-
-.chat-input {
-  width: 100%;
-  height: 40px;
-}
-
-.sendMessage {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  float: right;
+  max-width: 35ch;
 }
 /*# sourceMappingURL=styles.css.map */

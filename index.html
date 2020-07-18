@@ -1,23 +1,26 @@
 <!DOCTYPE html>
+
 <head>
     <title>Ahoy</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
     <link rel="stylesheet" href="styles/styles.css">
     <script src="https://js.radar.io/v3/radar.min.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
-    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script> 
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
 </head>
+
 <body>
     <div id="container">
         <header>
             <h1>Ahoy</h1>
             <img class="userimg" src="assets/user.png">
         </header>
-        <div class="main">
-            <div style="width: 63%; height: 100vh;" class="cursor-in-map" id="mapContainer"></div>
+        <main>
+            <div class="cursor-in-map" id="mapContainer"></div>
             <div class="chatbox">
                 <div class="chat-page">
                     <div class="msg-inbox">
@@ -29,39 +32,43 @@
                                     </div>
                                     <div class="received-msg">
                                         <div class="received-msg-inbox">
-                                            <p>Hi !!!</p>
-                                            <span class="time">11:00 AM</span>
+                                            <p>Ye filthy monkey, sparrow!</p>
+                                            <span class="them-chat">them</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="outgoing-chats">
-                                    
                                     <div class="outgoing-chats-msg">
                                         <!-- <div class="outgoing-msg-inbox"> -->
-                                            <p>Hi !!! Message from me</p>
-                                            <span class="time">11:00 AM</span>
+                                        <p>YO HO YO HO YO HO IT's A PIRATE's Life for me!
+                                            You dirty scallywag, piss off!
+
+                                        </p>
+                                        <span class="you-chat">you</span>
                                         <!-- </div> -->
                                     </div>
-                                    <div class="outgoing-chats-img">
-
-                                    </div>
+                                    <div class="outgoing-chats-img"></div>
                                 </div>
                             </div>
                         </div>
+                        <section class="sendMessage">
+                            <!-- <input id="message" type="text"  > -->
+                            <textarea name="message" id="message" class="chat-input" rows="1"
+                                placeholder="Ahoy scallywag"></textarea>
+                            <!-- <button id="send">Send</button> -->
+                        </section>
                     </div>
+
                 </div>
-                <section class="sendMessage">
-                    <input id="message" type="text" placeholder="Ahoy scallywag" class="chat-input">
-                    <button id="send">Send</button>
-                </section>
-            </div>
-        </div>
-        <section class="findbutton">
+
+                <!-- </div> -->
+        </main>
+        <!-- <section class="findbutton">
             <p>Name:</p>
             <input id="name" type="text" placeholder="Jack Sparrow" class="chat-input">
             <button onclick="setup()" class="find">Find a fellow seafarer!</button>
-        </section>
-        
+        </section> -->
+
     </div>
     <footer>
         <p class="footertext">© Ahoy 2020</p>
@@ -69,31 +76,36 @@
     <!-- <div id="root"></div> -->
     <script>
         var socket = io();
-         $(() => {
-             $("#send").click(()=>{
-                 sendMessage({name: $("#name").val(), message: $("#message").val()});
-             })
-     
-             getMessages()
-         })
-     
-         socket.on('message', addMessages)
-     
-         function addMessages(message){
-             $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message} </p>`)
-         }
-     
-         function getMessages(){
-           $.get('http://localhost:3000/messages', (data) => {
-             data.forEach(addMessages);
-           })
-         }
-     
-         function sendMessage(message){
-           $.post('http://localhost:3000/messages', message)
-         }
-     </script>
+        $(() => {
+            $("#send").click(() => {
+                sendMessage({
+                    name: $("#name").val(),
+                    message: $("#message").val()
+                });
+            })
+
+            getMessages()
+        })
+
+        socket.on('message', addMessages)
+
+        function addMessages(message) {
+            $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message} </p>`)
+        }
+
+        function getMessages() {
+            $.get('http://localhost:3000/messages', (data) => {
+                data.forEach(addMessages);
+            })
+        }
+
+        function sendMessage(message) {
+            $.post('http://localhost:3000/messages', message)
+        }
+       
+    </script>
     <script src="src/index.js"></script>
     <script src="src/scripts.js"></script>
 </body>
+
 </html>
