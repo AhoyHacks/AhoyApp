@@ -180,7 +180,9 @@ main {
           flex-direction: row;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-  width: 90vw;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   margin: 0 auto;
 }
 
