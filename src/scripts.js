@@ -12,6 +12,29 @@ let chatId = "";
 
 //prj_test_sk_5991f6d94f3dd6564391b67a22a8407d57b1bbd3 
 
+function showMessage(){
+  console.log("Clicked");
+  var div = document.getElementById("outgoing-chats");
+  newdiv = document.createElement('div');   
+  newdiv.className='outgoing-chats-msg';     
+  newspan = document.createElement('span');  
+  newspan.textContent="you"; 
+  newspan.className='you-chat'; 
+  text = document.createElement('p');
+  var typed = document.getElementById("message").value;
+  console.log(typed);
+  var node = document.createTextNode(typed);
+  text.appendChild(node);   
+  newdiv.appendChild(text)
+  div.appendChild(newdiv);
+  newdiv2 = document.createElement('div');   
+  newdiv2.className='outgoing-chats-img';
+  newdiv.appendChild(newspan);
+  div.appendChild(newdiv2);
+  typed = "";
+}
+
+
 setup();
 async function setup(){
   Radar.initialize('prj_test_sk_2f5580d96b2d660cf86a9d9b61b20a9f60263450');

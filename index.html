@@ -37,7 +37,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="outgoing-chats">
+                                <div class="outgoing-chats" id="outgoing-chats">
                                     <div class="outgoing-chats-msg">
                                         <!-- <div class="outgoing-msg-inbox"> -->
                                         <p>YO HO YO HO YO HO IT's A PIRATE's Life for me!
@@ -56,7 +56,11 @@
                             <textarea name="message" id="message" class="chat-input" rows="1"
                                 placeholder="Ahoy scallywag"></textarea>
                             <!-- <button id="send">Send</button> -->
+                            <div id="sendDiv">
+                                <button id="send" onclick="showMessage()">Send</button>
+                            </div>
                         </section>
+                        <button id="vcBtn">join voice chat</button>
                     </div>
 
                 </div>
@@ -74,36 +78,6 @@
         <p class="footertext">© Ahoy 2020</p>
     </footer>
     <!-- <div id="root"></div> -->
-    <script>
-        var socket = io();
-        $(() => {
-            $("#send").click(() => {
-                sendMessage({
-                    name: $("#name").val(),
-                    message: $("#message").val()
-                });
-            })
-
-            getMessages()
-        })
-
-        socket.on('message', addMessages)
-
-        function addMessages(message) {
-            $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message} </p>`)
-        }
-
-        function getMessages() {
-            $.get('http://localhost:3000/messages', (data) => {
-                data.forEach(addMessages);
-            })
-        }
-
-        function sendMessage(message) {
-            $.post('http://localhost:3000/messages', message)
-        }
-       
-    </script>
     <script src="src/index.js"></script>
     <script src="src/scripts.js"></script>
 </body>

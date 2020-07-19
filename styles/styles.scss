@@ -38,6 +38,20 @@ body{
     flex: 1 0 auto; // fotter stick bot
 }
 
+.mapboxgl-canvas {
+    border-radius: 1rem;
+    border: none;
+    width: 50vw;
+}
+
+#map{
+    z-index: 0 !important;
+}
+.mapboxgl-ctrl-logo, .mapboxgl-ctrl-bottom-right {
+    opacity: 0.4;
+}
+
+
 .find{
     padding: 10px;
     border-radius: 10px;
@@ -74,8 +88,55 @@ header{
     margin: 0 auto;
     height: 60vh;
     width: 70vw;
-    border-radius: 10px;
-    background-color: rgb(218, 237, 251);
+    border: none;
+    border-radius: 1.3rem;
+}
+::selection {
+    background-color: #ffa228; /* WebKit/Blink Browsers */
+    color: white;
+}
+
+.userBtn{
+    border: none;
+    background-color: #fcecec;
+    border-radius: 500px;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    top:10px;
+    left:-10px;
+    &:hover{
+        cursor: pointer;
+    }
+    .userimg {
+        position: relative;
+        top:-10px;
+        left:10px;
+    }
+}
+
+#sendDiv{
+    display: flex;
+    
+} 
+#send{
+    width: 50%;
+    padding: 0.4rem 1rem;
+    margin: 0 auto;
+    border: none;
+    background-color: rgb(255, 196, 196);
+    color: rgb(248, 109, 109);
+    font-weight: bold;
+}
+
+#vcBtn{
+    width: 100%;
+    padding: 0.4rem 1rem;
+    margin: 1vh auto;
+    border: none;
+    background-color: rgb(255, 196, 196);
+    color: rgb(248, 109, 109);
+    font-weight: bold;
 }
 
 main{
@@ -105,7 +166,7 @@ footer{
 
 .chatbox {
     margin: 0 0 0 0;
-    height: 70vh;
+    height: 65vh;
     display: var(--chat-display);
     background-color: #F5F3F3;
     border-radius: 1rem;
@@ -202,12 +263,3 @@ footer{
     max-width: 35ch;
 
 }
-// .chat-input {
-//     width: 100%;
-//     height: 40px;
-// }
-
-// .sendMessage{
-//     display: flex;
-//     flex-direction: row;
-// }

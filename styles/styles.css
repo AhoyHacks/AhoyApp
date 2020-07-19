@@ -45,6 +45,20 @@ body {
           flex: 1 0 auto;
 }
 
+.mapboxgl-canvas {
+  border-radius: 1rem;
+  border: none;
+  width: 50vw;
+}
+
+#map {
+  z-index: 0 !important;
+}
+
+.mapboxgl-ctrl-logo, .mapboxgl-ctrl-bottom-right {
+  opacity: 0.4;
+}
+
 .find {
   padding: 10px;
   border-radius: 10px;
@@ -89,8 +103,71 @@ header {
   margin: 0 auto;
   height: 60vh;
   width: 70vw;
-  border-radius: 10px;
-  background-color: #daedfb;
+  border: none;
+  border-radius: 1.3rem;
+}
+
+::-moz-selection {
+  background-color: #ffa228;
+  /* WebKit/Blink Browsers */
+  color: white;
+}
+
+::selection {
+  background-color: #ffa228;
+  /* WebKit/Blink Browsers */
+  color: white;
+}
+
+.userBtn {
+  border: none;
+  background-color: #fcecec;
+  border-radius: 500px;
+  position: relative;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  top: 10px;
+  left: -10px;
+}
+
+.userBtn:hover {
+  cursor: pointer;
+}
+
+.userBtn .userimg {
+  position: relative;
+  top: -10px;
+  left: 10px;
+}
+
+#sendDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#send {
+  width: 50%;
+  padding: 0.4rem 1rem;
+  margin: 0 auto;
+  border: none;
+  background-color: #ffc4c4;
+  color: #f86d6d;
+  font-weight: bold;
+}
+
+#vcBtn {
+  width: 100%;
+  padding: 0.4rem 1rem;
+  margin: 1vh auto;
+  border: none;
+  background-color: #ffc4c4;
+  color: #f86d6d;
+  font-weight: bold;
 }
 
 main {
@@ -126,7 +203,7 @@ footer {
 
 .chatbox {
   margin: 0 0 0 0;
-  height: 70vh;
+  height: 65vh;
   display: var(--chat-display);
   background-color: #F5F3F3;
   border-radius: 1rem;
