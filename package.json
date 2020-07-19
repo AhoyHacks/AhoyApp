@@ -19,6 +19,7 @@
     "url": "https://github.com/SaurontheMighty/Real-Time-Chat-App/issues"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "⁴.16.3",
     "nodemon": "^2.0.4",
     "mongoose": "^5.7.5",

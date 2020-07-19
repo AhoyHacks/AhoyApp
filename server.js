@@ -13,8 +13,13 @@ var Message = mongoose.model('Message',{
   name : String,
   message : String
 })
-//
-var dbUrl = 'mongodb+srv://dbUser:3oHtXm26UmirXxgM@na-cluester-00.f3dya.mongodb.net/<dbname>?retryWrites=true&w=majority'
+
+var dbUrl = 'mongodb+srv://dbUser:nE9c1fTMkb3mdvaA@na-cluester-00.f3dya.mongodb.net/ahoy-db?retryWrites=true&w=majority';
+
+mongoose.connect(dbUrl ,{useMongoClient : true} ,(err) => {
+  console.log('mongodb connected',err);
+});
+
 
 app.get('/messages', (req, res) => {
   Message.find({},(err, messages)=> {
@@ -32,19 +37,14 @@ app.get('/messages/:user', (req, res) => {
 
 
 app.post('/messages', async (req, res) => {
-  console.log(req.body);
   try{
     var message = new Message(req.body);
 
     var savedMessage = await message.save()
       console.log('saved');
 
-    var censored = await Message.findOne({message:'badword'});
-      if(censored)
-        await Message.remove({_id: censored.id})
-      else
-        io.emit('message', req.body);
-      res.sendStatus(200);
+    io.emit('message', req.body);
+    res.sendStatus(200);
   }
   catch (error){
     res.sendStatus(500);
@@ -57,14 +57,32 @@ app.post('/messages', async (req, res) => {
 })
 
 
-
 io.on('connection', () =>{
   console.log('a user is connected')
 })
 
-mongoose.connect(dbUrl ,{useMongoClient : true} ,(err) => {
-  console.log('mongodb connected',err);
-})
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = dbUrl;
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  console.log("MongoDB Connected");
+
+  //THE FOLLOWING CODE IS TO GET INFO FROM THE DB
+  const collection = client.db("Ahoy-db").collection("messages");
+  var query = { chatId: "5f125b5bbca127004d995827" };
+  collection.find(query).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    console.log(result[0].name);
+    for(var i=0; i<result.length;i++){ //FOR ALL THE MESSAGES IN THE DATABASE
+      let username = result[i].name; //THE USERS NAME
+      let message = result[i].message; //THE USERS MESSAGE
+    }
+  });
+  // perform actions on the collection object
+  client.close();
+});
 
 var server = http.listen(3000, () => {
   console.log('server is running on port', server.address().port);
