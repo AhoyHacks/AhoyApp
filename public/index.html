@@ -7,19 +7,21 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="/styles/styles.css">
     <script src="https://js.radar.io/v3/radar.min.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script
-        src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-        crossorigin="anonymous">
+    <!-- <script>
+        var socket = io();
+    </script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
     </script>
     <script src="src/chat.js"></script>
+    <script src="src/index.js"></script>
 </head>
 
 <body>
@@ -69,7 +71,7 @@
                             <div id="sendDiv">
                                 <button id="send">Send</button>
                             </div>
-                            
+
                         </section>
                         <p id="chatId" style="display: none;"></p>
                     </div>
@@ -92,30 +94,42 @@
     <!-- <script>
         var socket = io();
         $(() => {
-            $("#send").click(()=>{
-                sendMessage({name: $("#name").val(), message: $("#message").val()});
+            $("#send").click(() => {
+                sendMessage({
+                    name: $("#name").val(),
+                    message: $("#message").val()
+                });
             })
             getMessages()
         })
 
         socket.on('message', addMessages)
 
-        function addMessages(message){
+        function addMessages(message) {
             $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message} </p>`)
             console.log(message)
         }
 
-        function getMessages(){
-        $.get('http://localhost:3000/messages', (data) => {
-            data.forEach(addMessages);
-        })
+        function getMessages() {
+            $.get('http://localhost:3000/messages', (data) => {
+                data.forEach(addMessages);
+            })
         }
 
-        function sendMessage(message){
-        $.post('http://localhost:3000/messages', message)
+        function sendMessage(message) {
+            $.post('http://localhost:3000/messages', message)
         }
     </script> -->
-    <script src="src/index.js"></script>
+    <script src="src/map.js"></script>
     <script src="src/scripts.js"></script>
 </body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/7.16.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/7.16.1/firebase-analytics.js"></script>
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
 </html>

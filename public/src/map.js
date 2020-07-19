@@ -1,4 +1,3 @@
-
 function moveMap(map) {
     map.setCenter({
         lat: 0,
@@ -7,14 +6,6 @@ function moveMap(map) {
     map.setZoom(1);
 }
 
-
-window.addEventListener("load",setup);
-function setup(){
-    let message = document.querySelector("#message");
-    message.addEventListener('keyup', () =>{
-        message.setAttribute('rows', message.value.split('\n').length);
-    });
-}
 
 //Step 1: initialize communication with the platform
 // In your own code, replace variable window.apikey with your own apikey
