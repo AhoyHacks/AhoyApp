@@ -1,9 +1,9 @@
-window.addEventListener("load",setup);
+window.addEventListener("chatId",setup1);
 
 let sendBtn, message, socket, msgBoard;
 
-function setup(){
-    socket = io('http://localhost:3000');
+function setup1(){
+    socket = io(`http://localhost:3000/${chatId}`);
     sendBtn = document.querySelector("#send");
     message = document.querySelector("#message");
     msgBoard = document.querySelector("#container > main > div.chatbox > div > div > div > div");
