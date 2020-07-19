@@ -62,7 +62,7 @@ function showMessage(){
 
 setup();
 async function setup(){
-  Radar.initialize('prj_test_sk_2f5580d96b2d660cf86a9d9b61b20a9f60263450');
+  Radar.initialize('prj_test_sk_86c5dcd2f768553d3d62c7ab3f6d4a16ccba4ab9');
   let latlong=[];
   await Radar.getLocation(async function(err, result) {
     if (!err) {
@@ -100,7 +100,7 @@ async function createGeofence(data){
       method: 'POST',
       headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'prj_test_pk_542a33c10554d93abf97305dfb75d1cb4e976a43'
+      'Authorization': 'prj_test_sk_86c5dcd2f768553d3d62c7ab3f6d4a16ccba4ab9'
       },
       body: JSON.stringify(data)
   }); 
@@ -118,7 +118,7 @@ async function renderer(){
   const listGeofenceRes = await fetch('https://api.radar.io/v1/geofences/', {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'prj_test_sk_2f5580d96b2d660cf86a9d9b61b20a9f60263450'
+      'Authorization': 'prj_test_sk_86c5dcd2f768553d3d62c7ab3f6d4a16ccba4ab9'
     }
   })
   if(listGeofenceRes.ok) {
@@ -140,7 +140,7 @@ async function findGeofence(location){
   let response = await fetch(`https://api.radar.io/v1/search/geofences?near=${location}`, {
       method: 'GET',
       headers: {
-      "Authorization": "prj_test_pk_542a33c10554d93abf97305dfb75d1cb4e976a43"
+      "Authorization": "prj_test_sk_86c5dcd2f768553d3d62c7ab3f6d4a16ccba4ab9"
       },    
   }
   ).then(response => response.json()

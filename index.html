@@ -11,8 +11,11 @@
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
     <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
+    <!-- <script>
+        var socket = io('http://localhost:3000');
+    </script> -->
+    <script src="src/chat.js"></script>
 </head>
 
 <body>
@@ -27,11 +30,8 @@
                 <div class="chat-page">
                     <div class="msg-inbox">
                         <div class="chats">
-                            <div class="msg-page">
-                                <div class="received-chats">
-                                    <div class="received-chats-img">
-
-                                    </div>
+                            <div class="msgPage">
+                                <div class="received-chats"> 
                                     <div class="received-msg">
                                         <div class="received-msg-inbox">
                                             <p>Ye filthy monkey, sparrow!</p>
@@ -39,7 +39,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="outgoing-chats" id="outgoing-chats">
+                                <div class="outgoing-chats">
                                     <div class="outgoing-chats-msg">
                                         <!-- <div class="outgoing-msg-inbox"> -->
                                         <p>YO HO YO HO YO HO IT's A PIRATE's Life for me!
@@ -59,12 +59,12 @@
                                 placeholder="Ahoy scallywag"></textarea>
                             <!-- <button id="send">Send</button> -->
                             <div id="sendDiv">
-                                <button id="send" onclick="showMessage()">Send</button>
+                                <button id="send">Send</button>
                             </div>
                         </section>
-                        <button id="vcBtn">join voice chat</button>
+                        
                     </div>
-
+                    <button id="vcBtn">join voice chat</button>
                 </div>
 
                 <!-- </div> -->

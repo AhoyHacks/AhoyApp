@@ -1,89 +1,69 @@
-var express = require('express');
-var bodyParser = require('body-parser')
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var mongoose = require('mongoose');
-
-app.use(express.static(__dirname));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}))
-
-var Message = mongoose.model('Message',{
-  name : String,
-  message : String
-})
-
-var dbUrl = 'mongodb+srv://dbUser:nE9c1fTMkb3mdvaA@na-cluester-00.f3dya.mongodb.net/ahoy-db?retryWrites=true&w=majority';
-
-mongoose.connect(dbUrl ,{useMongoClient : true} ,(err) => {
-  console.log('mongodb connected',err);
-});
-
-
-app.get('/messages', (req, res) => {
-  Message.find({},(err, messages)=> {
-    res.send(messages);
-  })
-})
-
-
-app.get('/messages/:user', (req, res) => {
-  var user = req.params.user
-  Message.find({name: user},(err, messages)=> {
-    res.send(messages);
-  })
-})
-
-
-app.post('/messages', async (req, res) => {
-  try{
-    var message = new Message(req.body);
-
-    var savedMessage = await message.save()
-      console.log('saved');
-
-    io.emit('message', req.body);
-    res.sendStatus(200);
-  }
-  catch (error){
-    res.sendStatus(500);
-    return console.log('error',error);
-  }
-  finally{
-    console.log('Message Posted')
-  }
-
-})
-
-
-io.on('connection', () =>{
-  console.log('a user is connected')
-})
-
-
-const MongoClient = require('mongodb').MongoClient;
-const uri = dbUrl;
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  console.log("MongoDB Connected");
-
-  //THE FOLLOWING CODE IS TO GET INFO FROM THE DB
-  const collection = client.db("Ahoy-db").collection("messages");
-  var query = { chatId: "5f125b5bbca127004d995827" };
-  collection.find(query).toArray(function(err, result) {
-    if (err) throw err;
-    console.log(result);
-    console.log(result[0].name);
-    for(var i=0; i<result.length;i++){ //FOR ALL THE MESSAGES IN THE DATABASE
-      let username = result[i].name; //THE USERS NAME
-      let message = result[i].message; //THE USERS MESSAGE
+/* Imports */
+let express = require('express');
+let app = express();
+let server = require('http').createServer(app);
+let cors = require('cors');
+let io = require('socket.io')(server, {
+    handlePreflightRequest: (req, res) => {
+        const headers = {
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            "Access-Control-Allow-Origin": req.headers.origin, //or the specific origin you want to give access to,
+            "Access-Control-Allow-Credentials": true
+        };
+        res.writeHead(200, headers);
+        res.end();
     }
-  });
-  // perform actions on the collection object
-  client.close();
 });
 
-var server = http.listen(3000, () => {
-  console.log('server is running on port', server.address().port);
+/* Global vars */
+const port = 3000;
+const uri = "mongodb+srv://dbUser:nE9c1fTMkb3mdvaA@na-cluester-00.f3dya.mongodb.net/ahoy-db-1?retryWrites=true&w=majority";
+
+/* Buisnes logic */
+const MongoClient = require('mongodb').MongoClient;
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+app.use(cors()); // enables cors for requests b/w client and server
+
+server.listen("3000")
+// app.listen(port, () => console.log(`App listening at http://localhost:${port}`)) // Server setup
+
+
+/*
+* Get endpoint for the chat messages
+*/
+app.get('/messages/chat/:recieverId-:senderId', (req, res)=>{
+    let response;
+    client.connect(async err => {
+        if (err) res.status(500).send({error: "oof"})
+        const collection = await client.db("AHOY-DB-1").collection("GEOFENCE-ROOMS");
+        response = await collection.find({}).toArray();
+        res.json(await response);
+    });
 });
+
+
+/*
+* Post endpoint for the user to add themselves
+*/
+app.post('/messages/chat/send', (req, res)=>{
+    let response;
+    client.connect(async err => {
+        if (err) res.status(500).send({error: "oof"})
+        const collection = await client.db("AHOY-DB-1").collection("GEOFENCE-ROOMS");
+        response = await collection.updateOne({"_id":"oof"}, {$push: {"users":"lmao"}});
+        res.json(await response);
+    });
+});
+
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+    socket.on('chat message', (msg) => {
+        io.emit('chat message', msg);
+        console.log(msg)
+    });
+  });
